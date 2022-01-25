@@ -7,5 +7,10 @@ use Illuminate\Http\Request;
 
 class RefferalController extends Controller
 {
-    //
+    //APPLIES TO BE AN AFFILIATE
+
+    public function applyProduct()
+    {
+
+    }
 }

@@ -12,21 +12,15 @@ class UserController extends Controller
     {
         // validate
         $request->validate([
-            "firstname" => "required",
-            "lastname" => "required",
             "email" => "required|email|unique:users",
             "username" => "required",
-            "role" => "required",
             "password" => "required|confirmed",
         ]);
 
         // create user data + save
         $user = new User();
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->role = $request->role;
         $user->password = bcrypt($request->password);
 
         $user->save();
@@ -35,6 +29,7 @@ class UserController extends Controller
         return response()->json([
             "status" => 1,
             "message"=> "User registered successfully",
+            "user_id"=> $user->id
         ], 200);
     }
 

@@ -22,13 +22,14 @@ class ProductController extends Controller
         $product->product = $request->product;
         $product->description = $request->description;
         $product->link = $request->link;
+        $product->user_id = auth()->user()->id;
         $product->save();
 
         // send response
         return response()->json([
             "status" => 1,
             "message" => "Product added successfully",
-            "planholder" => $product->id
+            "product_id" => $product->id
         ], 200);
     }
 
@@ -82,7 +83,7 @@ class ProductController extends Controller
         }
     }
 
-    public function deletePlanholder($id)
+    public function deleteProduct($id)
     {
         if (Product::where("id", $id)->exists()) {
             $product = Product::find($id);

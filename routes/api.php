@@ -5,11 +5,11 @@ use App\Http\Controllers\Api\DataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\PlanholderController;
 use App\Http\Controllers\Api\BeneficiaryController;
 use App\Http\Controllers\Api\CollectController;
 use App\Http\Controllers\Api\CollectorController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,17 +22,15 @@ use App\Http\Controllers\Api\ProductController;
 |
 */
 
-Route::post("register", [UserController::class, "register"]);
+Route::post( "register", [UserController::class, "register"]);
+Route::post("add-role", [RoleController::class, "addRole"]);
 Route::post("login", [UserController::class, "login"]);
 
 Route::group(["middleware" => ["auth:api"]], function(){
     Route::get("profile", [UserController::class, "profile"]);
     Route::get("logout", [UserController::class, "logout"]);
 
-    // agents api routes
-
-
-    // planholder api routes
+    // product api routes
     Route::post("add-product", [ProductController::class, "addProduct"]);
     Route::get("get-product", [ProductController::class, "getProducts"]);
     Route::get("get-single-product/{id}", [ProductController::class, "getSingleProduct"]);
