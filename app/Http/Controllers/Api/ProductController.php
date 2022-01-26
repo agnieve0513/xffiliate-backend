@@ -14,6 +14,8 @@ class ProductController extends Controller
         $request->validate([
             "product" => "required:product",
             "description" => "required",
+            "productCode" => "required",
+            "category" => "required",
             "link" => "required|unique:product",
         ]);
 
@@ -21,6 +23,8 @@ class ProductController extends Controller
         $product = new Product();
         $product->product = $request->product;
         $product->description = $request->description;
+        $product->productCode = $request->productCode;
+        $product->category = $request->category;
         $product->link = $request->link;
         $product->user_id = auth()->user()->id;
         $product->save();

@@ -20,6 +20,8 @@ class CreateProductTable extends Migration
             $table->string(
             'description');
             $table->string('link');
+            $table->string('productCode');
+            $table->string('category');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
